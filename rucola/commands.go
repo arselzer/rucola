@@ -22,8 +22,6 @@ func showHelp(origin string) {
 
 	msg :=
 		`------------
-write a message to send it to all other users
-
 commands:
 
 /ls - list users
@@ -32,7 +30,7 @@ commands:
 ------------
 `
 
-	client.conn.Write([]byte(msg))
+	client.Conn.Write([]byte(msg))
 }
 
 func listClients(origin string) {
@@ -41,10 +39,10 @@ func listClients(origin string) {
 	var output string
 
 	for i := 0; i < len(clients); i++ {
-		output = output + " * " + clients[i].name + " " + clients[i].conn.RemoteAddr().String() + "\n"
+		output = output + " * " + clients[i].Name + " " + clients[i].Conn.RemoteAddr().String() + "\n"
 	}
 
-	client.conn.Write([]byte(output))
+	client.Conn.Write([]byte(output))
 }
 
 func pingClient(origin string, arguments []string) {
@@ -64,15 +62,15 @@ func sendDirectMsg(origin string, args []string) {
 	originClient, _ := findClient(origin)
 	client, _ := findClient(target)
 
-	if client.id == "" {
+	if client.Id == "" {
 		fmt.Printf("private message from %s failed: %s does not exist\n", origin, target)
 
-		if originClient.id != "" {
+		if originClient.Id != "" {
 			writeClient(originClient, "user does not exist: "+target)
 		} else {
 			fmt.Printf("Sender of message does not exist\n")
 		}
 	} else {
-		writeClient(client, "["+origin+"]: "+message)
+		writeClient(client, "["+origin+"]:"+message)
 	}
 }

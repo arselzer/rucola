@@ -3,8 +3,8 @@ build:
 
 default: build
 
-run:
-	go run rucola/*
+run: build
+	./rucola-chat
 
 test: build
 	./test.sh

@@ -5,13 +5,13 @@ import (
 )
 
 type Client struct {
-	id     string
-	name   string
-	online bool
-	conn   net.Conn
+	Id     string
+	Name   string
+	Online bool
+	Conn   net.Conn
 }
 
 type User struct {
-	id   string
-	name string
+	Id   string
+	Name string
 }
