@@ -14,8 +14,9 @@ to build:
 `git clone https://github.com/AlexanderSelzer/goleveldb`
 
 to install:
-*warning: might not yet work, I am still new to Go package organization :)*
+
 `go get github.com/AlexanderSelzer/rucola`
+
 `go install github.com/AlexanderSelzer/rucola`
 
 ## Building

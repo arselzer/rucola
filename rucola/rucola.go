@@ -19,13 +19,16 @@ func Rucola() {
 	err := initDb(*datadir)
 	if err != nil {
 		fmt.Printf("Could not init database: %s", err.Error())
+		os.Exit(1)
 	}
 
 	/* TCP Listener */
-	listener, err := net.Listen("tcp", "localhost:"+*port)
+	host := "localhost:"+*port
+	listener, err := net.Listen("tcp", host)
 
 	if err != nil {
 		fmt.Printf("Could not listen: %s", err.Error())
+		os.Exit(1)
 	}
 
 	/* Signals */
@@ -48,6 +51,8 @@ func Rucola() {
 	}()
 
 	fmt.Printf("Chat Server started\n")
+
+	fmt.Printf("Listening on %s\n", host)
 
 	/* TCP Connections */
 	for {
