@@ -1,4 +1,4 @@
-package main
+package rucola
 
 import (
 	"github.com/syndtr/goleveldb/leveldb"

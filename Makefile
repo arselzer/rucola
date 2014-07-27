@@ -1,10 +1,10 @@
 build:
-	go build -o rucola-chat rucola/*
+	go build -o bin/rucola main.go
 
 default: build
 
 run: build
-	./rucola-chat
+	./bin/rucola
 
 test: build
 	./test.sh
