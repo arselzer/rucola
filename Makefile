@@ -8,3 +8,6 @@ run: build
 
 test: build
 	./test.sh
+
+clean:
+	rm -r ./db

@@ -5,9 +5,10 @@ import (
 	"net"
 	"strings"
 	"regexp"
+	"sync"
 )
 
-var clients []Client
+var clients []Clientvar clientAccess sync.Mutex
 
 func findClient(name string) (Client, int) {
 	for i := 0; i < len(clients); i++ {
@@ -19,14 +20,17 @@ func findClient(name string) (Client, int) {
 }
 
 func addClient(client Client) {
+	clientAccess.Lock()
 	fmt.Printf("%#s", clients)
 	clients = append(clients, client)
+	clientAccess.Unlock()
 }
 
 func removeClient(client Client) {
+	clientAccess.Lock()
 	_, i := findClient(client.Name)
-
 	clients = append(clients[:i], clients[1+i:]...)
+	clientAccess.Unlock()
 }
 
 func writeClient(client Client, msg string) {
